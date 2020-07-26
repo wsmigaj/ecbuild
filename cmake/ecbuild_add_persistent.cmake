@@ -39,7 +39,9 @@
 set( sg_perl "${CMAKE_CURRENT_LIST_DIR}/sg.pl" CACHE INTERNAL "perl script to generate persistent objects" )
 
 function( ecbuild_add_persistent )
-  ecbuild_find_perl( REQUIRED )
+  if (NOT PERL_EXECUTABLE)
+    ecbuild_find_perl( REQUIRED )
+  endif()
 
   set( options )
   set( single_value_args SRC_LIST NAMESPACE )
